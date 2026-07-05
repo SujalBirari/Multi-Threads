@@ -1,0 +1,29 @@
+public class Transaction implements Runnable{
+    private final Account fromAccount;
+    private final Account toAccount;
+    private final double amount;
+
+    public Transaction(Account fromAccount, Account toAccount, double amount) {
+        this.fromAccount = fromAccount;
+        this.toAccount = toAccount;
+        this.amount = amount;
+    }
+
+    @Override
+    public void run() {
+        // 1. Simulate network/database delay (10 milliseconds)
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        // 2. Perform the transfer
+        if (fromAccount.getBalance() >= amount) {
+            fromAccount.withdraw(amount);
+            toAccount.deposit(amount);
+        } else {
+            System.out.println("Insufficient funds for account: " + fromAccount.getId());
+        }
+    }
+}
