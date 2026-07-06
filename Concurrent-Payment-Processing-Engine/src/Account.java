@@ -15,11 +15,15 @@ public class Account {
         return balance;
     }
 
-    public void withdraw(double amount) {
+    public synchronized void withdraw(double amount) throws InterruptedException {
+        while (balance < amount) {
+            wait();
+        }
         balance -= amount;
     }
 
-    public void deposit(double amount) {
+    public synchronized void deposit(double amount) {
         balance += amount;
+        notifyAll();
     }
 }

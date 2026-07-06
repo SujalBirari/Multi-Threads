@@ -11,6 +11,8 @@ public class Transaction implements Runnable{
 
     @Override
     public void run() {
+        if (SequentialEngine.emergencyHalt) return;
+
         // 1. Simulate network/database delay (10 milliseconds)
         try {
             Thread.sleep(10);
@@ -19,11 +21,11 @@ public class Transaction implements Runnable{
         }
 
         // 2. Perform the transfer
-        if (fromAccount.getBalance() >= amount) {
+        try {
             fromAccount.withdraw(amount);
             toAccount.deposit(amount);
-        } else {
-            System.out.println("Insufficient funds for account: " + fromAccount.getId());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }
