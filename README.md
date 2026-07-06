@@ -18,7 +18,7 @@
 5. Daemon Threads and User Threads
 6. Thread Priority
 
-## Phase 2 - The Core Java Thread API
+## Phase 3 - Intrinsic Synchronization & Memory Visibility
 
 1. Race Conditions, Mutual Exclusion
 2. Thread Synchronization, Locks
@@ -28,6 +28,6 @@
 6. Problems of using synchronized blocks
 
 - The Performance Hit - Thread Contention, Context Switching Overhead
-- Lack of Flexibility - No "Try-Lock" Mechanism (Timeout), Strict Block Scope, No Read/rite Distinction, No Fairness Guarantee
+- Lack of Flexibility - No "Try-Lock" Mechanism (Timeout), Strict Block Scope, No Read/Write Distinction, No Fairness Guarantee
 
 7. Visibility Problem in Java & volatile Keyword
